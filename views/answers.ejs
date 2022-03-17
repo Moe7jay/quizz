@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>answers</title>
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/client.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+        <h1>Quizzica</h1>
+      </a>
+    </nav>
+  </header>
+  <div class="main-container">
+    <div class="create-answers-cont">
+      <h1>Your question: <%= question.question %></h1>
+      <h3>Please provide four possible answers:</h3>
+      <form id="answers-form" method="POST" action="/questions/<%= question_id%>">
+        <label for="answer1">Answer 1</label>
+        <input id="textbox1" class="textbox" type="text" name="answer1">
+        <input type="radio" name="isCorrecta1" value="false">Is incorrect?</input>
+        <input type="radio" name="isCorrecta1" value="true">Is correct?</input>
+        <br>
+        <label for="answer2">Answer 2</label>
+        <input id="textbox2" class="textbox" type="text" name="answer2">
+        <input type="radio" name="isCorrecta2" value="false">Is incorrect?</input>
+        <input type="radio" name="isCorrecta2" value="true">Is correct?</input>
+        <br>
+        <label for="answer3">Answer 3</label>
+        <input id="textbox3" class="textbox" type="text" name="answer3">
+        <input type="radio" name="isCorrecta3" value="false">Is incorrect?</input>
+        <input type="radio" name="isCorrecta3" value="true">Is correct?</input>
+        <br />
+        <label for="answer4">Answer 4</label>
+        <input id="textbox4" class="textbox" type="text" name="answer4">
+        <input type="radio" name="isCorrecta4" value="false">Is incorrect?</input>
+        <input type="radio" name="isCorrecta4" value="true">Is correct?</input>
+        <br>
+        <button type="submit">Submit answers</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

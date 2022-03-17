@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Finished Quiz</title>
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <% if (input[0].user_id){ %>
+        <a href="/users/<%= input[0].user_id %>">
+          <h1>Quizzica</h1>
+        </a>
+        <% } else {%>
+          <a href="/">
+            <h1>Quizzica</h1>
+          </a>
+          <% } %>
+
+      <a href="/users/<%= input[0].user_id %>">
+        <div class="create-quiz-link">
+          Your Quizzes!
+        </div>
+      </a>
+    </nav>
+  </header>
+  <div class="main-container">
+    <div class="finished-quiz-container">
+      <h2>Your Quiz: <%= input[0].name%></h2>
+      <h3>Please click on one answer for each question:</h3>
+      <div>
+        <form method="POST" action="/answers/<%= input[0].quiz_id %>/result/<%= input[0].user_id %>">
+          <% let questionText = ''; %>
+          <div class="q-and-a">
+            <% for (let obj of input) { %>
+            <% if (obj.question === questionText) { %>
+            <div class="answers">
+              <input type="radio" name="<%= obj.question_id%>" value="<%= obj.id%>"><%= obj.answer %></input>
+              <br>
+            </div>
+            <% } else {  %>
+            <% questionText = obj.question %>
+            <h4 class="question"><%= questionText %></h4>
+            <br>
+            <div class="answers">
+              <input type="radio" name="<%= obj.question_id%>" value="<%= obj.id%>"><%= obj.answer %></input>
+              <br>
+            </div>
+            <% } %>
+            <% } %>
+            <br>
+            <button class="btn-answer_submit" type="submit">Submit Quiz</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

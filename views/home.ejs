@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+
+  <%- include('headTag.ejs') %>
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/home/">
+        <h1>Quizzica</h1>
+      </a>
+
+      <% if(user_id){ %>
+        <a href="/users/<%= user_id %>">
+          <div class="create-quiz-link">
+            Your Quizzes!
+          </div>
+        </a>
+        <a href="/users/<%= user_id %>/makequiz">
+          <div class="create-quiz-link">
+            Make Quiz
+          </div>
+        </a>
+      <% } else{ %>
+        <a href="/users/1">
+          <div class="create-quiz-link">
+            login as user 1
+          </div>
+        </a>
+        <a href="/users/2">
+          <div class="create-quiz-link">
+            login as user 2
+          </div>
+        </a>
+     <% } %>
+
+
+    </nav>
+  </header>
+  <div class="main-container">
+    <h1>Explore all Public quizzes</h1>
+    <h2>No logins! No sign ups!</h2>
+    <div class="links-container">
+      <% for (let quiz of quizzes) {%>
+
+        <div class="quiz-link">
+          <%= quiz.name %>
+          <br>
+          <a href="/answers/<%= quiz.id%>">
+          <p><%= quiz.description %></p>
+        </a>
+        </div>
+      </a>
+      <br>
+      <form method="POST" action="/users/<%= quiz.user_id %>/delete/<%= quiz.id %>">
+        <button class="delete-btn" type="submit">Delete Quiz</button>
+      </form>
+      <%}%>
+    </div>
+  </div>
+  <script type="text/javascript" src="/scripts/client.js"></script>
+</body>
+
+</html>

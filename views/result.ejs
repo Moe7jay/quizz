@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results</title>
+   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <% if (attempt[0].user_id){ %>
+        <a href="/users/<%= attempt[0].user_id %>">
+          <h1>Quizzica</h1>
+        </a>
+        <% } else {%>
+          <a href="/">
+            <h1>Quizzica</h1>
+          </a>
+          <% } %>
+
+      <a href="/users/<%= attempt[0].user_id %>">
+        <div class="create-quiz-link">
+          Your Quizzes!
+        </div>
+      </a>
+    </nav>
+  </header>
+  <div class="main-container">
+    <div class="results">
+      <h1>Your Quiz Result!</h1>
+      <h1><%= attempt[0].name %></h1>
+      <div class="answer-results">
+        <% for (let answer of attempt) { %>
+        <span class="question-results"> Question: <%= answer.question %> </span>
+        <span class="input-answer"> Your Answer: <%= answer.answer %></span>
+        <% if (answer.iscorrect === false) { %>
+        <span class="false">WRONG</span>
+        <br>
+        <% } else { %>
+          <span class="true">CORRECT</span>
+        <br>
+        <% } %>
+      <% } %>
+    </div>
+    </div>
+    <a href="/users/<%= attempt[0].user_id%>"> <div class="quiz-redirect">Take another quiz!</div></a>
+  </div>
+</body>
+
+</html>
